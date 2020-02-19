@@ -1,0 +1,1 @@
+sudo apt-get install git dpkg-dev:i386 cpp:i386 binutils:i386 g++-7:i386 gcc-7:i386 g++:i386 gcc:i386 g++-multilib:i386 gcc-multilib:i386 make:i386 libstdc++6:i386 libgcc-8-dev:i386 libxinerama-dev:i386 libxrandr-dev:i386 libxext-dev:i386 libxrender-dev:i386 libx11-dev:i386 libc6-dev:i386 gawk:i386
