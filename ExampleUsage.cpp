@@ -32,11 +32,24 @@
 using std::string;
 using std::to_string;
 
-int main() {
+int main(int argc, char **argv) {
   string displayX      = to_string(display_get_x());
   string displayY      = to_string(display_get_y());
   string displayWidth  = to_string(display_get_width());
   string displayHeight = to_string(display_get_height());
-  std::cout << "Primary Monitor WidthxHeight+X+Y: " + displayWidth + "x" + displayHeight + "+" + displayX + "+" + displayY << std::endl;
+  if (argc == 1) {
+    std::cout << "Primary Monitor WidthxHeight+X+Y: " + displayWidth + "x" + displayHeight + "+" + displayX + "+" + displayY << std::endl;
+  } else if (argc == 2) {
+    string arg = argv[1];
+    if (arg == "-x" || arg == "--x") {
+      std::cout << displayX << std::endl;
+    } else if (arg == "-y" || arg == "--y") {
+      std::cout << displayY << std::endl;
+    } else if (arg == "-w" || arg == "-width" || arg == "--width") {
+      std::cout << displayWidth << std::endl;
+    } else if (arg == "-h" || arg == "-height" || arg == "--height") {
+      std::cout << displayHeight << std::endl;
+    }
+  }
   return 0;
 }
