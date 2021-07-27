@@ -45,9 +45,9 @@ int main(int argc, char **argv) {
       std::cout << displayX << std::endl;
     } else if (arg == "-y" || arg == "--y") {
       std::cout << displayY << std::endl;
-    } else if (arg == "-w" || arg == "-width" || arg == "--width") {
+    } else if (arg == "-w" || arg == "--w" || arg == "-width" || arg == "--width") {
       std::cout << displayWidth << std::endl;
-    } else if (arg == "-h" || arg == "-height" || arg == "--height") {
+    } else if (arg == "-h" || arg == "--h" || arg == "-height" || arg == "--height") {
       std::cout << displayHeight << std::endl;
     }
   }
