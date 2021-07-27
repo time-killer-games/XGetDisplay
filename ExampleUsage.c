@@ -54,9 +54,9 @@ int main(int argc, char **argv) {
       puts(displayX);
     } else if (strcmp(argv, "-y") == 0 || strcmp(argv, "--y") == 0) {
       puts(displayY);
-    } else if (strcmp(argv, "-w") == 0 || if (strcmp(argv, "--w") == 0 || strcmp(argv, "-width") == 0 || strcmp(argv, "--width") == 0) {
+    } else if (strcmp(argv, "-w") == 0 || strcmp(argv, "--w") == 0 || strcmp(argv, "-width") == 0 || strcmp(argv, "--width") == 0) {
       puts(displayWidth);
-    } else if (strcmp(argv, "-h") == 0 || if (strcmp(argv, "--h") == 0 || strcmp(argv, "-height") == 0 || strcmp(argv, "--height") == 0) {
+    } else if (strcmp(argv, "-h") == 0 || strcmp(argv, "--h") == 0 || strcmp(argv, "-height") == 0 || strcmp(argv, "--height") == 0) {
       puts(displayHeight);
     }
   }
