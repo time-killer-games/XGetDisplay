@@ -29,7 +29,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int main() {
+int main(int argc, char **argv) {
   char displayWidth[16];
   sprintf(displayWidth, "%d", display_get_width());
   char displayHeight[16];
@@ -38,15 +38,27 @@ int main() {
   sprintf(displayX, "%d", display_get_x());
   char displayY[16];
   sprintf(displayY, "%d", display_get_y());
-  char cstr[80];
-  strcpy(cstr, "Primary Monitor WidthxHeight+X+Y: ");
-  strcat(cstr, displayWidth);
-  strcat(cstr, "x");
-  strcat(cstr, displayHeight);
-  strcat(cstr, "+");
-  strcat(cstr, displayX);
-  strcat(cstr, "+");
-  strcat(cstr, displayY);
-  puts(cstr);
+  if (argc == 1) {
+    char cstr[80];
+    strcpy(cstr, "Primary Monitor WidthxHeight+X+Y: ");
+    strcat(cstr, displayWidth);
+    strcat(cstr, "x");
+    strcat(cstr, displayHeight);
+    strcat(cstr, "+");
+    strcat(cstr, displayX);
+    strcat(cstr, "+");
+    strcat(cstr, displayY);
+    puts(cstr);
+  } else if (argc == 2) { 
+    if (strcmp(argv, "-x") == 0 || strcmp(argv, "--x") == 0) {
+      puts(displayX);
+    } else if (strcmp(argv, "-y") == 0 || strcmp(argv, "--y") == 0) {
+      puts(displayY);
+    } else if (strcmp(argv, "-w") == 0 || strcmp(argv, "-width") == 0 || strcmp(argv, "--width") == 0) {
+      puts(displayWidth);
+    } else if (strcmp(argv, "-h") == 0 || strcmp(argv, "-height") == 0 || strcmp(argv, "--height") == 0) {
+      puts(displayHeight);
+    } else 
+  }
   return 0;
 }
