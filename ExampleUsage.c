@@ -50,13 +50,13 @@ int main(int argc, char **argv) {
     strcat(cstr, displayY);
     puts(cstr);
   } else if (argc == 2) { 
-    if (strcmp(argv, "-x") == 0 || strcmp(argv, "--x") == 0) {
+    if (strcmp(argv[1], "-x") == 0 || strcmp(argv[1], "--x") == 0) {
       puts(displayX);
-    } else if (strcmp(argv, "-y") == 0 || strcmp(argv, "--y") == 0) {
+    } else if (strcmp(argv[1], "-y") == 0 || strcmp(argv[1], "--y") == 0) {
       puts(displayY);
-    } else if (strcmp(argv, "-w") == 0 || strcmp(argv, "--w") == 0 || strcmp(argv, "-width") == 0 || strcmp(argv, "--width") == 0) {
+    } else if (strcmp(argv[1], "-w") == 0 || strcmp(argv[1], "--w") == 0 || strcmp(argv[1], "-width") == 0 || strcmp(argv[1], "--width") == 0) {
       puts(displayWidth);
-    } else if (strcmp(argv, "-h") == 0 || strcmp(argv, "--h") == 0 || strcmp(argv, "-height") == 0 || strcmp(argv, "--height") == 0) {
+    } else if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--h") == 0 || strcmp(argv[1], "-height") == 0 || strcmp(argv[1], "--height") == 0) {
       puts(displayHeight);
     }
   }
