@@ -29,18 +29,15 @@
 #include <iostream>
 #include <string>
 
-using std::string;
-using std::to_string;
-
 int main(int argc, char **argv) {
-  string displayX      = to_string(display_get_x());
-  string displayY      = to_string(display_get_y());
-  string displayWidth  = to_string(display_get_width());
-  string displayHeight = to_string(display_get_height());
+  int displayX = display_get_x();
+  int displayY = display_get_y();
+  int displayWidth = display_get_width();
+  int displayHeight = display_get_height();
   if (argc == 1) {
-    std::cout << "Primary Monitor [Width*Height+X+Y]: " + displayWidth + "*" + displayHeight + "+" + displayX + "+" + displayY << std::endl;
+    std::cout << "Primary Monitor [Width*Height+X+Y]: " << displayWidth << "*" << displayHeight << "+" << displayX << "+" << displayY << std::endl;
   } else if (argc == 2) {
-    string arg = argv[1];
+    std::string arg = argv[1];
     if (arg == "-x" || arg == "--x") {
       std::cout << displayX << std::endl;
     } else if (arg == "-y" || arg == "--y") {
