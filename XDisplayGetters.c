@@ -24,21 +24,18 @@
  
 */
 
+#include <limits.h>
+
 #include "XDisplayGetters.h"
 
 #include <X11/Xlib.h>
 #include <X11/extensions/Xrandr.h>
 #include <X11/extensions/Xinerama.h>
 
-static int displayX            = -1;
-static int displayY            = -1;
-static int displayWidth        = -1;
-static int displayHeight       = -1;
-
-static int displayXGetter      = -1;
-static int displayYGetter      = -1;
-static int displayWidthGetter  = -1;
-static int displayHeightGetter = -1;
+static int displayX = INT_MIN;
+static int displayY = INT_MIN;
+static int displayWidth = INT_MIN;
+static int displayHeight = INT_MIN;
 
 static void display_get_position(Bool i, int *result) {
   Display *display = XOpenDisplay(NULL);
@@ -72,37 +69,29 @@ static void display_get_size(Bool i, int *result) {
 }
 
 int display_get_x() {
-  if (displayXGetter == displayX && displayX != -1)
-    return displayXGetter;
-  display_get_position(False, &displayXGetter);
-  int result = displayXGetter;
-  displayX = result;
-  return result;
+  if (displayX != INT_MIN)
+    return displayX;
+  display_get_position(False, &displayX);
+  return displayX;
 }
 
 int display_get_y() { 
-  if (displayYGetter == displayY && displayY != -1)
-    return displayYGetter;
-  display_get_position(True, &displayYGetter);
-  int result = displayYGetter;
-  displayY = result;
-  return result;
+  if (displayY != INT_MIN)
+    return displayY;
+  display_get_position(True, &displayY);
+  return displayY;
 }
 
 int display_get_width() {
-  if (displayWidthGetter == displayWidth && displayWidth != -1) 
-    return displayWidthGetter;
-  display_get_size(False, &displayWidthGetter);
-  int result = displayWidthGetter;
-  displayWidth = result;
-  return result;
+  if (displayWidth != INT_MIN) 
+    return displayWidth;
+  display_get_size(False, &displayWidth);
+  return displayWidth;
 }
 
 int display_get_height() {
-  if (displayHeightGetter == displayHeight && displayHeight != -1)
-    return displayHeightGetter;
-  display_get_size(True, &displayHeightGetter);
-  int result = displayHeightGetter;
-  displayHeight = result;
-  return result;
+  if (displayHeight != INT_MIN)
+    return displayHeight;
+  display_get_size(True, &displayHeight);
+  return displayHeight;
 }

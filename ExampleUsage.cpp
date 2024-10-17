@@ -24,10 +24,10 @@
  
 */
 
-#include "XDisplayGetters.h"
-
 #include <iostream>
 #include <string>
+
+#include "XDisplayGetters.h"
 
 int main(int argc, char **argv) {
   int displayX = display_get_x();

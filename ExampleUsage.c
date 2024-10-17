@@ -24,10 +24,10 @@
  
 */
 
-#include "XDisplayGetters.h"
-
 #include <stdio.h>
 #include <string.h>
+
+#include "XDisplayGetters.h"
 
 int main(int argc, char **argv) {
   int displayWidth = display_get_width();

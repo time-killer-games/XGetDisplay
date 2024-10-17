@@ -24,85 +24,78 @@
  
 */
 
+#include <climits>
+
 #include "XDisplayGetters.h"
 
 #include <X11/Xlib.h>
 #include <X11/extensions/Xrandr.h>
 #include <X11/extensions/Xinerama.h>
 
-static int displayX            = -1;
-static int displayY            = -1;
-static int displayWidth        = -1;
-static int displayHeight       = -1;
+namespace {
 
-static int displayXGetter      = -1;
-static int displayYGetter      = -1;
-static int displayWidthGetter  = -1;
-static int displayHeightGetter = -1;
+  int displayX = INT_MIN;
+  int displayY = INT_MIN;
+  int displayWidth = INT_MIN;
+  int displayHeight = INT_MIN;
 
-static void display_get_position(bool i, int *result) {
-  Display *display = XOpenDisplay(NULL);
-  *result = 0; Rotation original_rotation; 
-  Window root = XDefaultRootWindow(display);
-  XRRScreenConfiguration *conf = XRRGetScreenInfo(display, root);
-  SizeID original_size_id = XRRConfigCurrentConfiguration(conf, &original_rotation);
-  if (XineramaIsActive(display)) {
-    int m = 0; XineramaScreenInfo *xrrp = XineramaQueryScreens(display, &m);
-    if (!i) *result = xrrp[original_size_id].x_org;
-    else if (i) *result = xrrp[original_size_id].y_org;
-    XFree(xrrp);
+  void display_get_position(bool i, int *result) {
+    Display *display = XOpenDisplay(NULL);
+    *result = 0; Rotation original_rotation; 
+    Window root = XDefaultRootWindow(display);
+    XRRScreenConfiguration *conf = XRRGetScreenInfo(display, root);
+    SizeID original_size_id = XRRConfigCurrentConfiguration(conf, &original_rotation);
+    if (XineramaIsActive(display)) {
+      int m = 0; XineramaScreenInfo *xrrp = XineramaQueryScreens(display, &m);
+      if (!i) *result = xrrp[original_size_id].x_org;
+      else if (i) *result = xrrp[original_size_id].y_org;
+      XFree(xrrp);
+    }
+    XCloseDisplay(display);
   }
-  XCloseDisplay(display);
-}
 
-static void display_get_size(bool i, int *result) {
-  Display *display = XOpenDisplay(NULL);
-  *result = 0; int num_sizes; Rotation original_rotation; 
-  Window root = XDefaultRootWindow(display);
-  int screen = XDefaultScreen(display);
-  XRRScreenConfiguration *conf = XRRGetScreenInfo(display, root);
-  SizeID original_size_id = XRRConfigCurrentConfiguration(conf, &original_rotation);
-  if (XineramaIsActive(display)) {
-    XRRScreenSize *xrrs = XRRSizes(display, screen, &num_sizes);
-    if (!i) *result = xrrs[original_size_id].width;
-    else if (i) *result = xrrs[original_size_id].height;
-  } else if (!i) *result = XDisplayWidth(display, screen);
-  else if (i) *result = XDisplayHeight(display, screen);
-  XCloseDisplay(display);
-}
+  void display_get_size(bool i, int *result) {
+    Display *display = XOpenDisplay(NULL);
+    *result = 0; int num_sizes; Rotation original_rotation; 
+    Window root = XDefaultRootWindow(display);
+    int screen = XDefaultScreen(display);
+    XRRScreenConfiguration *conf = XRRGetScreenInfo(display, root);
+    SizeID original_size_id = XRRConfigCurrentConfiguration(conf, &original_rotation);
+    if (XineramaIsActive(display)) {
+      XRRScreenSize *xrrs = XRRSizes(display, screen, &num_sizes);
+      if (!i) *result = xrrs[original_size_id].width;
+      else if (i) *result = xrrs[original_size_id].height;
+    } else if (!i) *result = XDisplayWidth(display, screen);
+    else if (i) *result = XDisplayHeight(display, screen);
+    XCloseDisplay(display);
+  }
+
+} // anonymous namespace
 
 int display_get_x() {
-  if (displayXGetter == displayX && displayX != -1)
-    return displayXGetter;
-  display_get_position(false, &displayXGetter);
-  int result = displayXGetter;
-  displayX = result;
-  return result;
+  if (displayX != INT_MIN)
+    return displayX;
+  display_get_position(False, &displayX);
+  return displayX;
 }
 
 int display_get_y() { 
-  if (displayYGetter == displayY && displayY != -1)
-    return displayYGetter;
-  display_get_position(true, &displayYGetter);
-  int result = displayYGetter;
-  displayY = result;
-  return result;
+  if (displayY != INT_MIN)
+    return displayY;
+  display_get_position(True, &displayY);
+  return displayY;
 }
 
 int display_get_width() {
-  if (displayWidthGetter == displayWidth && displayWidth != -1) 
-    return displayWidthGetter;
-  display_get_size(false, &displayWidthGetter);
-  int result = displayWidthGetter;
-  displayWidth = result;
-  return result;
+  if (displayWidth != INT_MIN) 
+    return displayWidth;
+  display_get_size(False, &displayWidth);
+  return displayWidth;
 }
 
 int display_get_height() {
-  if (displayHeightGetter == displayHeight && displayHeight != -1)
-    return displayHeightGetter;
-  display_get_size(true, &displayHeightGetter);
-  int result = displayHeightGetter;
-  displayHeight = result;
-  return result;
+  if (displayHeight != INT_MIN)
+    return displayHeight;
+  display_get_size(True, &displayHeight);
+  return displayHeight;
 }
