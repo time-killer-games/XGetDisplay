@@ -2,7 +2,7 @@
 
  MIT License
  
- Copyright © 2020 Samuel Venable
+ Copyright © 2024 Samuel Venable
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
   string displayWidth  = to_string(display_get_width());
   string displayHeight = to_string(display_get_height());
   if (argc == 1) {
-    std::cout << "Primary Monitor WidthxHeight+X+Y: " + displayWidth + "x" + displayHeight + "+" + displayX + "+" + displayY << std::endl;
+    std::cout << "Primary Monitor [Width*Height+X+Y]: " + displayWidth + "*" + displayHeight + "+" + displayX + "+" + displayY << std::endl;
   } else if (argc == 2) {
     string arg = argv[1];
     if (arg == "-x" || arg == "--x") {

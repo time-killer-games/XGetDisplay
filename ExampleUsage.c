@@ -2,7 +2,7 @@
 
  MIT License
  
- Copyright © 2020 Samuel Venable
+ Copyright © 2024 Samuel Venable
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -40,9 +40,9 @@ int main(int argc, char **argv) {
   sprintf(displayY, "%d", display_get_y());
   if (argc == 1) {
     char cstr[80];
-    strcpy(cstr, "Primary Monitor WidthxHeight+X+Y: ");
+    strcpy(cstr, "Primary Monitor [Width*Height+X+Y]: ");
     strcat(cstr, displayWidth);
-    strcat(cstr, "x");
+    strcat(cstr, "*");
     strcat(cstr, displayHeight);
     strcat(cstr, "+");
     strcat(cstr, displayX);
