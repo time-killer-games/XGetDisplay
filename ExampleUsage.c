@@ -30,34 +30,21 @@
 #include <string.h>
 
 int main(int argc, char **argv) {
-  char displayWidth[16];
-  sprintf(displayWidth, "%d", display_get_width());
-  char displayHeight[16];
-  sprintf(displayHeight, "%d", display_get_height());
-  char displayX[16];
-  sprintf(displayX, "%d", display_get_x());
-  char displayY[16];
-  sprintf(displayY, "%d", display_get_y());
+  int displayWidth = display_get_width();
+  int displayHeight = display_get_height();
+  int displayX = display_get_x();
+  int displayY = display_get_y();
   if (argc == 1) {
-    char cstr[80];
-    strcpy(cstr, "Primary Monitor [Width*Height+X+Y]: ");
-    strcat(cstr, displayWidth);
-    strcat(cstr, "*");
-    strcat(cstr, displayHeight);
-    strcat(cstr, "+");
-    strcat(cstr, displayX);
-    strcat(cstr, "+");
-    strcat(cstr, displayY);
-    puts(cstr);
+    printf("Primary Monitor [Width*Height+X+Y]: %d*%d+%d+%d\n", displayWidth, displayHeight, displayX, displayY);
   } else if (argc == 2) { 
     if (strcmp(argv[1], "-x") == 0 || strcmp(argv[1], "--x") == 0) {
-      puts(displayX);
+      printf("%d\n", displayX);
     } else if (strcmp(argv[1], "-y") == 0 || strcmp(argv[1], "--y") == 0) {
-      puts(displayY);
+      printf("%d\n", displayY);
     } else if (strcmp(argv[1], "-w") == 0 || strcmp(argv[1], "--w") == 0 || strcmp(argv[1], "-width") == 0 || strcmp(argv[1], "--width") == 0) {
-      puts(displayWidth);
+      printf("%d\n", displayWidth);
     } else if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--h") == 0 || strcmp(argv[1], "-height") == 0 || strcmp(argv[1], "--height") == 0) {
-      puts(displayHeight);
+      printf("%d\n", displayHeight);
     }
   }
   return 0;
