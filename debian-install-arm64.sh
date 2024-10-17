@@ -1,1 +1,1 @@
-sudo apt-get install git dpkg-dev:arm64 cpp:arm64 binutils:arm64 g++-7:arm64 gcc-7:arm64 g++:arm64 gcc:arm64 g++-multilib:arm64 gcc-multilib:arm64 make:arm64 libstdc++6:arm64 libgcc-8-dev:arm64 libxinerama-dev:arm64 libxrandr-dev:arm64 libxext-dev:arm64 libxrender-dev:arm64 libx11-dev:arm64 libc6-dev:arm64 gawk:arm64
+sudo apt-get install git build-essential libxinerama-dev libxrandr-dev libxext-dev libxrender-dev libx11-dev
